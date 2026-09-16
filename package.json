@@ -1,0 +1,48 @@
+{
+  "name": "wedding-quest",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@12.4.1",
+  "engines": {
+    "node": ">=24.21.0 <25",
+    "pnpm": "12.4.1"
+  },
+  "scripts": {
+    "build": "pnpm --filter @wedding-quest/web build",
+    "dev": "pnpm --filter @wedding-quest/web dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "infra:down": "docker compose down",
+    "infra:probe": "node scripts/probe-infrastructure.mjs",
+    "infra:status": "docker compose ps",
+    "infra:up": "docker compose up -d postgres redis",
+    "lint": "eslint . --max-warnings=0",
+    "prepare": "simple-git-hooks",
+    "quality": "pnpm verify:boundaries && pnpm verify:environment && pnpm verify:infrastructure && pnpm lint && pnpm format:check && pnpm typecheck",
+    "start": "pnpm --filter @wedding-quest/web start",
+    "test": "pnpm verify:environment && pnpm verify:infrastructure",
+    "test:e2e": "playwright test",
+    "typecheck": "pnpm --recursive --if-present typecheck && tsc -p tests/tsconfig.json",
+    "verify:boundaries": "node scripts/verify-boundaries.mjs",
+    "verify:client-boundaries": "node scripts/verify-client-boundaries.mjs",
+    "verify:environment": "node --test packages/config/tests/environment.test.mjs",
+    "verify:infrastructure": "node --test packages/database/tests/database.test.mjs packages/infrastructure/tests/infrastructure.test.mjs",
+    "worker": "pnpm --filter @wedding-quest/worker start",
+    "verify": "pnpm quality && pnpm build && pnpm verify:client-boundaries"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged --concurrent false"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.63.0",
+    "@types/node": "24.10.1",
+    "eslint": "10.10.0",
+    "eslint-config-prettier": "10.1.8",
+    "globals": "17.12.0",
+    "lint-staged": "17.5.1",
+    "prettier": "3.9.6",
+    "simple-git-hooks": "2.14.0",
+    "typescript": "7.0.2"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "@wedding-quest/worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/main.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@wedding-quest/config": "workspace:*",
+    "@wedding-quest/infrastructure": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.1",
+    "typescript": "catalog:"
+  }
+}

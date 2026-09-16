@@ -1,0 +1,16 @@
+{
+  "extends": "../../packages/tooling/typescript/base.json",
+  "compilerOptions": {
+    "incremental": true,
+    "jsx": "react-jsx",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "types": ["node", "react", "react-dom"]
+  },
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}
