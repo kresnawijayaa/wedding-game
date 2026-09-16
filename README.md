@@ -115,4 +115,4 @@ Client monitoring loads the SDK only after an exception, keeping it outside the 
 
 ## Current task
 
-`M1-06` passes locally and is awaiting its GitHub-hosted workflow run. `M1-07` will add one local sample wedding after observability verification; wedding-domain production behavior remains out of scope.
+`M1-06` is complete after passing local verification and GitHub Actions. `M1-07` is next and will add one local sample wedding; wedding-domain production behavior remains out of scope.

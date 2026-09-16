@@ -2,7 +2,7 @@
 
 Date: 2026-09-16  
 Task: `M1-06`  
-Result: LOCAL PASS — REMOTE VERIFICATION PENDING
+Result: PASS
 
 ## Outcome and scope
 
@@ -34,7 +34,7 @@ Client monitoring registers small native error listeners and lazy-loads the SDK 
 | `pnpm test:e2e` | PASS; 2/2 Chromium desktop/mobile smoke tests |
 | `pnpm audit --prod` | PASS after PostCSS 8.5.28 patch; no known runtime vulnerabilities |
 | `rhysd/actionlint:1.7.12` | PASS; updated workflow has no findings |
-| GitHub-hosted workflow | PENDING; requires an authorized commit and push |
+| [GitHub-hosted workflow run 35077802462](https://github.com/kresnawijayaa/wedding-game/actions/runs/35077802462) | PASS; quality/unit, infrastructure integration, production build and budget checks, and browser smoke tests |
 
 ## Performance, accessibility, and security impact
 
@@ -55,11 +55,10 @@ Client monitoring registers small native error listeners and lazy-loads the SDK 
 
 ## Plan/ADR/CR updates
 
-- `M1-06` is recorded as `VERIFY`, not `DONE`, until its GitHub-hosted workflow is green.
+- `M1-06` is recorded as `DONE`, and `M1-07` is the only `READY` task after GitHub-hosted workflow run `35077802462` passed.
 - No ADR or Change Request was required; Sentry and environment isolation were already selected by the implementation plan and ADR-001.
 
 ## Remaining risks and follow-ups
 
-- Commit and push require explicit owner authorization because they mutate the shared Git remote.
 - A real event, release creation, and source-map symbolication require deployment-managed Sentry credentials and must be exercised before the M9 release gate.
-- After the GitHub workflow passes, record the run, move `M1-06` to `DONE`, and make `M1-07` `READY`.
+- Future workflow changes must retain the initial JavaScript budget and client-boundary gates.
