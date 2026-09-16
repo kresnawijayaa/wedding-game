@@ -103,4 +103,4 @@ On Windows, Playwright opens Chromium visibly to avoid an upstream headless-prof
 
 ## Current task
 
-`M1-04` is complete: local data, queue, cache, worker, and object-storage boundaries are active. `M1-05` passes locally and is awaiting its first successful GitHub-hosted workflow run; wedding-domain features remain out of scope.
+`M1-05` is complete: local and GitHub-hosted quality, build, integration, and browser gates are green. `M1-06` adds Sentry release/environment separation; wedding-domain features remain out of scope.

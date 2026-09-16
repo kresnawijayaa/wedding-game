@@ -6,7 +6,7 @@ Status umum: sesuai rencana
 
 ## Tujuan saat ini
 
-Memverifikasi `M1-05`: menjalankan workflow CI pertama di GitHub setelah commit dan push diotorisasi.
+Menjalankan `M1-06`: mengonfigurasi pemisahan release dan environment Sentry.
 
 ## Status task
 
@@ -23,7 +23,8 @@ Memverifikasi `M1-05`: menjalankan workflow CI pertama di GitHub setelah commit 
 | M1-02 | DONE | Technical owner | `docs/test-evidence/M1/M1-02-quality-tooling.md` | Selesai |
 | M1-03 | DONE | Technical owner | `docs/test-evidence/M1/M1-03-environment-security.md` | Selesai |
 | M1-04 | DONE | Technical owner | `docs/test-evidence/M1/M1-04-infrastructure.md` | Selesai |
-| M1-05 | VERIFY | Technical owner | `docs/test-evidence/M1/M1-05-ci.md` | Commit, push, dan pastikan seluruh job GitHub Actions hijau |
+| M1-05 | DONE | Technical owner | `docs/test-evidence/M1/M1-05-ci.md` dan GitHub Actions run `35068068329` | Selesai |
+| M1-06 | READY | Technical owner | Seluruh gate M1-05 hijau | Konfigurasikan Sentry release/environment separation |
 
 ## Pengujian
 
@@ -38,7 +39,7 @@ Memverifikasi `M1-05`: menjalankan workflow CI pertama di GitHub setelah commit 
 | 2026-09-16 | M1-02 quality tooling | Frozen install, boundary check, ESLint, Prettier, strict typecheck seluruh workspace sumber, pre-commit hook, dan production build | Lulus | `docs/test-evidence/M1/M1-02-quality-tooling.md` |
 | 2026-09-16 | M1-03 environment security | Tujuh unit test environment, negative production build, valid production build, client-bundle canary scan, quality gate, dan frozen install | Lulus | `docs/test-evidence/M1/M1-03-environment-security.md` |
 | 2026-09-16 | M1-04 server infrastructure | Frozen install, 14 unit test, Drizzle check, Compose validation, PostgreSQL/Redis health, BullMQ integration probe, production build, audit, dan client-boundary scan | Lulus | `docs/test-evidence/M1/M1-04-infrastructure.md` |
-| 2026-09-16 | M1-05 CI foundation | Workflow lint, quality/unit, production build, integration probe, dan Playwright Chromium desktop/mobile | Lulus lokal; GitHub-hosted run menunggu commit/push | `docs/test-evidence/M1/M1-05-ci.md` |
+| 2026-09-16 | M1-05 CI foundation | Workflow lint, quality/unit, production build, integration probe, dan Playwright Chromium desktop/mobile | Lulus lokal dan GitHub-hosted | `docs/test-evidence/M1/M1-05-ci.md` dan GitHub Actions run `35068068329` |
 
 ## Risiko dan blocker aktif
 
@@ -57,8 +58,8 @@ Memverifikasi `M1-05`: menjalankan workflow CI pertama di GitHub setelah commit 
 - `M1-02` selesai 2026-09-16; quality gate terpadu dan pre-commit staged-file aktif. TypeScript 7 diperiksa oleh compiler strict native sampai parser ESLint stabil mendeklarasikan kompatibilitas.
 - `M1-03` selesai 2026-09-16; public/server environment terpisah, production gagal cepat tanpa konfigurasi aman, dan bundle klien diperiksa dari kebocoran secret.
 - `M1-04` selesai 2026-09-16; ADR-002 menetapkan package infrastructure server-only, PostgreSQL/Drizzle, Redis/BullMQ worker, adapter S3-compatible, dan Compose lokal terverifikasi.
-- `M1-05` masuk `VERIFY` pada 2026-09-16; seluruh gate CI lulus lokal, tetapi Definition of Done menunggu workflow GitHub-hosted hijau.
+- `M1-05` selesai 2026-09-16; GitHub Actions run `35068068329` meluluskan quality/unit, production build, infrastructure integration, dan browser smoke tests.
 
 ## Task berikutnya yang direkomendasikan
 
-- Dengan izin product owner, commit dan push perubahan fondasi untuk memicu workflow GitHub Actions pertama; setelah semua job hijau, tutup `M1-05` dan aktifkan `M1-06`.
+- Mulai `M1-06` — konfigurasi Sentry dengan pemisahan release dan environment tanpa mengekspos DSN atau data tamu yang tidak diperlukan.
