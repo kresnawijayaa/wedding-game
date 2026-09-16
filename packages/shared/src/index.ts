@@ -7,3 +7,9 @@ export const foundationStatusSchema = z.object({
 });
 
 export type FoundationStatus = z.infer<typeof foundationStatusSchema>;
+
+export {
+  createDiagnosticRuntimeOptions,
+  sanitizeDiagnosticBreadcrumb,
+  sanitizeDiagnosticEvent,
+} from "./observability.ts";

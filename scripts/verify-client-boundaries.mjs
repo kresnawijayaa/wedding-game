@@ -5,6 +5,7 @@ const staticDirectory = resolve(process.cwd(), "apps/web/.next/static");
 const forbiddenMarkers = [
   "GUEST_TOKEN_SIGNING_SECRET",
   "OBJECT_STORAGE_SECRET_ACCESS_KEY",
+  "SENTRY_AUTH_TOKEN",
   "@wedding-quest/infrastructure",
   "@wedding-quest/database",
 ];

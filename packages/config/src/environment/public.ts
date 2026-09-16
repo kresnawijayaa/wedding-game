@@ -5,11 +5,26 @@ const featureFlagSchema = z
   .default("false")
   .transform((value) => value === "true");
 
+const optionalUrlSchema = z.preprocess(
+  (value) => (value === "" ? undefined : value),
+  z.string().url().optional(),
+);
+
+const optionalStringSchema = z.preprocess(
+  (value) => (value === "" ? undefined : value),
+  z.string().min(1).optional(),
+);
+
 export const publicEnvironmentSchema = z
   .object({
     NEXT_PUBLIC_APP_URL: z.string().url().default("http://localhost:3000"),
     NEXT_PUBLIC_PHOTOBOOTH_ENABLED: featureFlagSchema,
     NEXT_PUBLIC_REALTIME_ENABLED: featureFlagSchema,
+    NEXT_PUBLIC_SENTRY_DSN: optionalUrlSchema,
+    NEXT_PUBLIC_SENTRY_ENVIRONMENT: z
+      .enum(["local", "test", "staging", "production"])
+      .default("local"),
+    NEXT_PUBLIC_SENTRY_RELEASE: optionalStringSchema,
   })
   .readonly();
 
@@ -21,6 +36,9 @@ export function parsePublicEnvironment(environment: RawEnvironment): PublicEnvir
     NEXT_PUBLIC_APP_URL: environment.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_PHOTOBOOTH_ENABLED: environment.NEXT_PUBLIC_PHOTOBOOTH_ENABLED,
     NEXT_PUBLIC_REALTIME_ENABLED: environment.NEXT_PUBLIC_REALTIME_ENABLED,
+    NEXT_PUBLIC_SENTRY_DSN: environment.NEXT_PUBLIC_SENTRY_DSN,
+    NEXT_PUBLIC_SENTRY_ENVIRONMENT: environment.NEXT_PUBLIC_SENTRY_ENVIRONMENT,
+    NEXT_PUBLIC_SENTRY_RELEASE: environment.NEXT_PUBLIC_SENTRY_RELEASE,
   });
 
   if (!result.success) {

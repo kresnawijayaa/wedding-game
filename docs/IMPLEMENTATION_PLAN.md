@@ -400,7 +400,7 @@ Task states: `BACKLOG`, `READY`, `IN PROGRESS`, `BLOCKED`, `VERIFY`, `DONE`.
 - [DONE] `M1-03` Configure environment validation and safe secret handling.
 - [DONE] `M1-04` Configure PostgreSQL/Drizzle, Redis, BullMQ worker, and object-storage adapters.
 - [DONE] `M1-05` Add CI for unit/integration tests, browser tests, type checking, linting, and production builds.
-- [READY] `M1-06` Configure Sentry release/environment separation.
+- [VERIFY] `M1-06` Configure Sentry release/environment separation.
 - [BACKLOG] `M1-07` Create local seed data for one sample wedding.
 - [BACKLOG] `M1-08` Add health and readiness endpoints.
 
@@ -820,7 +820,7 @@ For a solo developer, assume approximately 1.5–2.5 times this duration dependi
 
 Milestone M0 was completed on 2026-09-16. Product scope, flows, wireframes, device support, privacy/moderation, TypeScript ADR-001, scored risks, and measurable performance budgets are approved.
 
-Milestone M1 is active. `M1-01` through `M1-05` were completed on 2026-09-16. The repository now has a reproducible web/package skeleton, local quality gates, validated environment boundaries, production fail-fast rules, client-bundle secret checks, tested PostgreSQL/Redis/BullMQ/S3-compatible server adapters, and a green GitHub Actions pipeline covering quality, build, integration, and browser tests. `M1-06` is the only `READY` task; M1-07 and M1-08 remain `BACKLOG`.
+Milestone M1 is active. `M1-01` through `M1-05` were completed on 2026-09-16. The repository now has a reproducible web/package skeleton, validated environment and server-infrastructure boundaries, and a green GitHub Actions pipeline. `M1-06` is in `VERIFY`: privacy-safe Sentry configuration for browser, Next.js server/edge, and worker runtimes passes locally, including the 220 KiB initial-JavaScript budget; its GitHub-hosted run still requires an authorized commit and push. M1-07 and M1-08 remain `BACKLOG`.
 
 The first executable proof should then be M3's vertical slice using placeholder assets. Only after movement, camera, lifecycle, collision, and React–Phaser integration are stable should production artwork and full content be integrated.
 

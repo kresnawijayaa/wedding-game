@@ -6,7 +6,7 @@ Status umum: sesuai rencana
 
 ## Tujuan saat ini
 
-Menjalankan `M1-06`: mengonfigurasi pemisahan release dan environment Sentry.
+Memverifikasi `M1-06`: menjalankan konfigurasi observability dan budget gate terbaru di GitHub Actions.
 
 ## Status task
 
@@ -24,7 +24,7 @@ Menjalankan `M1-06`: mengonfigurasi pemisahan release dan environment Sentry.
 | M1-03 | DONE | Technical owner | `docs/test-evidence/M1/M1-03-environment-security.md` | Selesai |
 | M1-04 | DONE | Technical owner | `docs/test-evidence/M1/M1-04-infrastructure.md` | Selesai |
 | M1-05 | DONE | Technical owner | `docs/test-evidence/M1/M1-05-ci.md` dan GitHub Actions run `35068068329` | Selesai |
-| M1-06 | READY | Technical owner | Seluruh gate M1-05 hijau | Konfigurasikan Sentry release/environment separation |
+| M1-06 | VERIFY | Technical owner | `docs/test-evidence/M1/M1-06-observability.md` | Commit, push, dan pastikan seluruh job GitHub Actions hijau |
 
 ## Pengujian
 
@@ -40,6 +40,7 @@ Menjalankan `M1-06`: mengonfigurasi pemisahan release dan environment Sentry.
 | 2026-09-16 | M1-03 environment security | Tujuh unit test environment, negative production build, valid production build, client-bundle canary scan, quality gate, dan frozen install | Lulus | `docs/test-evidence/M1/M1-03-environment-security.md` |
 | 2026-09-16 | M1-04 server infrastructure | Frozen install, 14 unit test, Drizzle check, Compose validation, PostgreSQL/Redis health, BullMQ integration probe, production build, audit, dan client-boundary scan | Lulus | `docs/test-evidence/M1/M1-04-infrastructure.md` |
 | 2026-09-16 | M1-05 CI foundation | Workflow lint, quality/unit, production build, integration probe, dan Playwright Chromium desktop/mobile | Lulus lokal dan GitHub-hosted | `docs/test-evidence/M1/M1-05-ci.md` dan GitHub Actions run `35068068329` |
+| 2026-09-16 | M1-06 observability | Environment/release validation, privacy scrubber, web/server/edge/worker integration, production build, bundle budget, audit, workflow lint, dan browser smoke test | Lulus lokal; GitHub-hosted run menunggu commit/push | `docs/test-evidence/M1/M1-06-observability.md` |
 
 ## Risiko dan blocker aktif
 
@@ -59,7 +60,8 @@ Menjalankan `M1-06`: mengonfigurasi pemisahan release dan environment Sentry.
 - `M1-03` selesai 2026-09-16; public/server environment terpisah, production gagal cepat tanpa konfigurasi aman, dan bundle klien diperiksa dari kebocoran secret.
 - `M1-04` selesai 2026-09-16; ADR-002 menetapkan package infrastructure server-only, PostgreSQL/Drizzle, Redis/BullMQ worker, adapter S3-compatible, dan Compose lokal terverifikasi.
 - `M1-05` selesai 2026-09-16; GitHub Actions run `35068068329` meluluskan quality/unit, production build, infrastructure integration, dan browser smoke tests.
+- `M1-06` masuk `VERIFY` pada 2026-09-16; seluruh gate lokal lulus dengan initial JavaScript 166,6 KiB gzip dan audit runtime tanpa vulnerability yang diketahui.
 
 ## Task berikutnya yang direkomendasikan
 
-- Mulai `M1-06` — konfigurasi Sentry dengan pemisahan release dan environment tanpa mengekspos DSN atau data tamu yang tidak diperlukan.
+- Dengan izin product owner, commit dan push perubahan observability untuk memicu GitHub Actions; setelah hijau, tutup `M1-06` dan aktifkan `M1-07`.

@@ -101,6 +101,18 @@ Reproduce the application checks locally with `pnpm verify` and `pnpm test:e2e`.
 
 On Windows, Playwright opens Chromium visibly to avoid an upstream headless-profile cleanup defect. Linux CI remains headless.
 
+## Observability
+
+Sentry error monitoring is configured for the browser, Next.js server/edge runtimes, and the BullMQ worker. It remains disabled when `NEXT_PUBLIC_SENTRY_DSN` is blank. Staging and production require:
+
+- `NEXT_PUBLIC_SENTRY_DSN` for event delivery;
+- `NEXT_PUBLIC_SENTRY_ENVIRONMENT` matching `APP_ENV`;
+- `NEXT_PUBLIC_SENTRY_RELEASE` as an immutable release identifier.
+
+Source-map upload is enabled only when `SENTRY_AUTH_TOKEN`, `SENTRY_ORG`, and `SENTRY_PROJECT` are all present during the build. Keep the token in deployment secret management.
+
+Client monitoring loads the SDK only after an exception, keeping it outside the initial route bundle. Default PII, tracing, and replay are disabled. Diagnostic sanitization removes user identity, request headers, cookies, bodies, query strings, full paths, breadcrumb payloads, and arbitrary extra data before delivery.
+
 ## Current task
 
-`M1-05` is complete: local and GitHub-hosted quality, build, integration, and browser gates are green. `M1-06` adds Sentry release/environment separation; wedding-domain features remain out of scope.
+`M1-06` passes locally and is awaiting its GitHub-hosted workflow run. `M1-07` will add one local sample wedding after observability verification; wedding-domain production behavior remains out of scope.

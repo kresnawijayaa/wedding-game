@@ -12,6 +12,17 @@ const requiredRemoteInfrastructureKeys = [
   "OBJECT_STORAGE_ACCESS_KEY_ID",
   "OBJECT_STORAGE_SECRET_ACCESS_KEY",
 ] as const;
+const sentryBuildKeys = ["SENTRY_AUTH_TOKEN", "SENTRY_ORG", "SENTRY_PROJECT"] as const;
+
+const optionalStringSchema = z.preprocess(
+  (value) => (value === "" ? undefined : value),
+  z.string().min(1).optional(),
+);
+
+const optionalUrlSchema = z.preprocess(
+  (value) => (value === "" ? undefined : value),
+  z.string().url().optional(),
+);
 
 const databaseUrlSchema = z
   .string()
@@ -36,6 +47,11 @@ const serverEnvironmentSchema = z
     NEXT_PUBLIC_APP_URL: z.string().url().optional(),
     NEXT_PUBLIC_PHOTOBOOTH_ENABLED: z.enum(["true", "false"]).default("false"),
     NEXT_PUBLIC_REALTIME_ENABLED: z.enum(["true", "false"]).default("false"),
+    NEXT_PUBLIC_SENTRY_DSN: optionalUrlSchema,
+    NEXT_PUBLIC_SENTRY_ENVIRONMENT: z
+      .enum(["local", "test", "staging", "production"])
+      .default("local"),
+    NEXT_PUBLIC_SENTRY_RELEASE: optionalStringSchema,
     OBJECT_STORAGE_ACCESS_KEY_ID: z.string().min(1).optional(),
     OBJECT_STORAGE_BUCKET: z.string().min(3).optional(),
     OBJECT_STORAGE_ENDPOINT: z.string().url().optional(),
@@ -47,8 +63,27 @@ const serverEnvironmentSchema = z
       .regex(/^[a-z0-9-]+$/)
       .default("wedding-quest-local"),
     REDIS_URL: redisUrlSchema.optional(),
+    SENTRY_AUTH_TOKEN: optionalStringSchema,
+    SENTRY_ORG: optionalStringSchema,
+    SENTRY_PROJECT: optionalStringSchema,
   })
   .superRefine((environment, context) => {
+    const configuredSentryBuildKeys = sentryBuildKeys.filter((key) => environment[key]);
+    if (
+      configuredSentryBuildKeys.length > 0 &&
+      configuredSentryBuildKeys.length < sentryBuildKeys.length
+    ) {
+      for (const key of sentryBuildKeys) {
+        if (!environment[key]) {
+          context.addIssue({
+            code: "custom",
+            message: "is required when any Sentry build credential is configured",
+            path: [key],
+          });
+        }
+      }
+    }
+
     if (!remoteEnvironment.has(environment.APP_ENV)) return;
 
     if (!environment.NEXT_PUBLIC_APP_URL) {
@@ -70,6 +105,30 @@ const serverEnvironmentSchema = z
         code: "custom",
         message: "is required for staging and production",
         path: ["GUEST_TOKEN_SIGNING_SECRET"],
+      });
+    }
+
+    if (!environment.NEXT_PUBLIC_SENTRY_DSN) {
+      context.addIssue({
+        code: "custom",
+        message: "is required for staging and production",
+        path: ["NEXT_PUBLIC_SENTRY_DSN"],
+      });
+    }
+
+    if (environment.NEXT_PUBLIC_SENTRY_ENVIRONMENT !== environment.APP_ENV) {
+      context.addIssue({
+        code: "custom",
+        message: "must match APP_ENV for staging and production",
+        path: ["NEXT_PUBLIC_SENTRY_ENVIRONMENT"],
+      });
+    }
+
+    if (!environment.NEXT_PUBLIC_SENTRY_RELEASE) {
+      context.addIssue({
+        code: "custom",
+        message: "is required for staging and production",
+        path: ["NEXT_PUBLIC_SENTRY_RELEASE"],
       });
     }
 
@@ -125,6 +184,9 @@ export function parseServerEnvironment(environment: RawEnvironment): ServerEnvir
     NEXT_PUBLIC_APP_URL: environment.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_PHOTOBOOTH_ENABLED: environment.NEXT_PUBLIC_PHOTOBOOTH_ENABLED,
     NEXT_PUBLIC_REALTIME_ENABLED: environment.NEXT_PUBLIC_REALTIME_ENABLED,
+    NEXT_PUBLIC_SENTRY_DSN: environment.NEXT_PUBLIC_SENTRY_DSN,
+    NEXT_PUBLIC_SENTRY_ENVIRONMENT: environment.NEXT_PUBLIC_SENTRY_ENVIRONMENT,
+    NEXT_PUBLIC_SENTRY_RELEASE: environment.NEXT_PUBLIC_SENTRY_RELEASE,
     OBJECT_STORAGE_ACCESS_KEY_ID: environment.OBJECT_STORAGE_ACCESS_KEY_ID,
     OBJECT_STORAGE_BUCKET: environment.OBJECT_STORAGE_BUCKET,
     OBJECT_STORAGE_ENDPOINT: environment.OBJECT_STORAGE_ENDPOINT,
@@ -133,6 +195,9 @@ export function parseServerEnvironment(environment: RawEnvironment): ServerEnvir
     OBJECT_STORAGE_SECRET_ACCESS_KEY: environment.OBJECT_STORAGE_SECRET_ACCESS_KEY,
     QUEUE_PREFIX: environment.QUEUE_PREFIX,
     REDIS_URL: environment.REDIS_URL,
+    SENTRY_AUTH_TOKEN: environment.SENTRY_AUTH_TOKEN,
+    SENTRY_ORG: environment.SENTRY_ORG,
+    SENTRY_PROJECT: environment.SENTRY_PROJECT,
   });
 
   if (!result.success) {

@@ -1,3 +1,6 @@
+import "./instrumentation.ts";
+
+import * as Sentry from "@sentry/node";
 import { parseServerEnvironment } from "@wedding-quest/config/environment/server";
 import {
   INFRASTRUCTURE_QUEUE_NAME,
@@ -33,6 +36,7 @@ async function shutdown(signal: string): Promise<void> {
   console.log("Worker stopping.", { signal });
   await worker.close();
   await closeRedisConnection(connection);
+  await Sentry.close(2_000);
 }
 
 for (const signal of ["SIGINT", "SIGTERM"] as const) {
@@ -42,5 +46,12 @@ for (const signal of ["SIGINT", "SIGTERM"] as const) {
 }
 
 worker.on("error", (error) => {
+  Sentry.captureException(error);
   console.error("Worker connection error.", { name: error.name });
+});
+
+worker.on("failed", (_job, error) => {
+  Sentry.captureException(error, {
+    tags: { component: "worker", queue: INFRASTRUCTURE_QUEUE_NAME },
+  });
 });

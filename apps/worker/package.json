@@ -8,8 +8,10 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@sentry/node": "10.74.0",
     "@wedding-quest/config": "workspace:*",
-    "@wedding-quest/infrastructure": "workspace:*"
+    "@wedding-quest/infrastructure": "workspace:*",
+    "@wedding-quest/shared": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "24.10.1",

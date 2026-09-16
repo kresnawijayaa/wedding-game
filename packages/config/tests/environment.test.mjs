@@ -9,6 +9,9 @@ test("public environment uses safe local defaults", () => {
     NEXT_PUBLIC_APP_URL: "http://localhost:3000",
     NEXT_PUBLIC_PHOTOBOOTH_ENABLED: false,
     NEXT_PUBLIC_REALTIME_ENABLED: false,
+    NEXT_PUBLIC_SENTRY_DSN: undefined,
+    NEXT_PUBLIC_SENTRY_ENVIRONMENT: "local",
+    NEXT_PUBLIC_SENTRY_RELEASE: undefined,
   });
 });
 
@@ -23,6 +26,9 @@ test("public environment returns only explicitly allowlisted values", () => {
     NEXT_PUBLIC_APP_URL: "https://example.test",
     NEXT_PUBLIC_PHOTOBOOTH_ENABLED: false,
     NEXT_PUBLIC_REALTIME_ENABLED: true,
+    NEXT_PUBLIC_SENTRY_DSN: undefined,
+    NEXT_PUBLIC_SENTRY_ENVIRONMENT: "local",
+    NEXT_PUBLIC_SENTRY_RELEASE: undefined,
   });
   assert.equal("GUEST_TOKEN_SIGNING_SECRET" in parsed, false);
 });
@@ -61,6 +67,25 @@ test("staging and production require HTTPS and a signing secret", () => {
   );
 });
 
+test("remote environments require matching Sentry environment and release", () => {
+  assert.throws(
+    () =>
+      parseServerEnvironment({
+        APP_ENV: "production",
+        NEXT_PUBLIC_SENTRY_DSN: "https://public@example.ingest.sentry.io/1",
+        NEXT_PUBLIC_SENTRY_ENVIRONMENT: "staging",
+      }),
+    /NEXT_PUBLIC_SENTRY_ENVIRONMENT.*NEXT_PUBLIC_SENTRY_RELEASE/,
+  );
+});
+
+test("Sentry source-map credentials must be configured as one set", () => {
+  assert.throws(
+    () => parseServerEnvironment({ SENTRY_AUTH_TOKEN: "build-token" }),
+    /SENTRY_ORG.*SENTRY_PROJECT/,
+  );
+});
+
 test("validation errors do not include rejected secret values", () => {
   const rejectedSecret = "DO_NOT_INCLUDE_THIS_SECRET";
 
@@ -82,6 +107,9 @@ test("a complete production environment is accepted", () => {
     GUEST_TOKEN_SIGNING_SECRET: "a".repeat(32),
     NEXT_PUBLIC_APP_URL: "https://wedding.example",
     NEXT_PUBLIC_PHOTOBOOTH_ENABLED: "true",
+    NEXT_PUBLIC_SENTRY_DSN: "https://public@example.ingest.sentry.io/1",
+    NEXT_PUBLIC_SENTRY_ENVIRONMENT: "production",
+    NEXT_PUBLIC_SENTRY_RELEASE: "wedding-quest@2026.09.16.1",
     OBJECT_STORAGE_ACCESS_KEY_ID: "production-key",
     OBJECT_STORAGE_BUCKET: "wedding-production",
     OBJECT_STORAGE_ENDPOINT: "https://account.r2.cloudflarestorage.com",
@@ -92,6 +120,8 @@ test("a complete production environment is accepted", () => {
   assert.equal(parsed.APP_ENV, "production");
   assert.equal(parsed.NEXT_PUBLIC_PHOTOBOOTH_ENABLED, true);
   assert.equal(parsed.NEXT_PUBLIC_REALTIME_ENABLED, false);
+  assert.equal(parsed.NEXT_PUBLIC_SENTRY_ENVIRONMENT, "production");
+  assert.equal(parsed.NEXT_PUBLIC_SENTRY_RELEASE, "wedding-quest@2026.09.16.1");
   assert.equal(parsed.OBJECT_STORAGE_FORCE_PATH_STYLE, false);
 });
 

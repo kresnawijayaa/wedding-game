@@ -60,6 +60,8 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Build web application
         run: pnpm build
+      - name: Verify initial JavaScript budget
+        run: pnpm verify:web-budget
       - name: Verify client bundle boundaries
         run: pnpm verify:client-boundaries
 
