@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "seed:validate": "node scripts/validate-sample-wedding.mjs",
     "typecheck": "tsc --noEmit"
   },
   "exports": {

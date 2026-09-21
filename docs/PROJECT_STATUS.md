@@ -6,7 +6,7 @@ Status umum: sesuai rencana
 
 ## Tujuan saat ini
 
-Mengerjakan `M1-07`: membuat seed data lokal untuk satu sample wedding.
+Memverifikasi `M1-07`: memastikan sample wedding lokal valid, deterministik, dan siap dikonsumsi migrasi domain M2-01.
 
 ## Status task
 
@@ -25,7 +25,7 @@ Mengerjakan `M1-07`: membuat seed data lokal untuk satu sample wedding.
 | M1-04 | DONE | Technical owner | `docs/test-evidence/M1/M1-04-infrastructure.md` | Selesai |
 | M1-05 | DONE | Technical owner | `docs/test-evidence/M1/M1-05-ci.md` dan GitHub Actions run `35068068329` | Selesai |
 | M1-06 | DONE | Technical owner | `docs/test-evidence/M1/M1-06-observability.md` dan GitHub Actions run `35077802462` | Selesai |
-| M1-07 | READY | Technical owner | Acceptance criteria di `docs/IMPLEMENTATION_PLAN.md` | Buat seed data lokal untuk satu sample wedding |
+| M1-07 | VERIFY | Technical owner | `packages/config/src/wedding-seed.ts` dan focused tests | Jalankan verifikasi lokal, lalu GitHub Actions |
 
 ## Pengujian
 
@@ -42,6 +42,7 @@ Mengerjakan `M1-07`: membuat seed data lokal untuk satu sample wedding.
 | 2026-09-16 | M1-04 server infrastructure | Frozen install, 14 unit test, Drizzle check, Compose validation, PostgreSQL/Redis health, BullMQ integration probe, production build, audit, dan client-boundary scan | Lulus | `docs/test-evidence/M1/M1-04-infrastructure.md` |
 | 2026-09-16 | M1-05 CI foundation | Workflow lint, quality/unit, production build, integration probe, dan Playwright Chromium desktop/mobile | Lulus lokal dan GitHub-hosted | `docs/test-evidence/M1/M1-05-ci.md` dan GitHub Actions run `35068068329` |
 | 2026-09-16 | M1-06 observability | Environment/release validation, privacy scrubber, web/server/edge/worker integration, production build, bundle budget, audit, workflow lint, dan browser smoke test | Lulus lokal dan GitHub-hosted | `docs/test-evidence/M1/M1-06-observability.md` dan GitHub Actions run `35077802462` |
+| 2026-09-21 | M1-07 sample wedding seed | Validasi schema, referential integrity, determinism, ketiadaan raw guest token, boundaries, lint, formatting, dan typecheck | Lulus lokal; GitHub-hosted menunggu commit/push | `docs/test-evidence/M1/M1-07-sample-wedding-seed.md` |
 
 ## Risiko dan blocker aktif
 
@@ -62,7 +63,8 @@ Mengerjakan `M1-07`: membuat seed data lokal untuk satu sample wedding.
 - `M1-04` selesai 2026-09-16; ADR-002 menetapkan package infrastructure server-only, PostgreSQL/Drizzle, Redis/BullMQ worker, adapter S3-compatible, dan Compose lokal terverifikasi.
 - `M1-05` selesai 2026-09-16; GitHub Actions run `35068068329` meluluskan quality/unit, production build, infrastructure integration, dan browser smoke tests.
 - `M1-06` selesai 2026-09-16; seluruh gate lokal dan GitHub Actions run `35077802462` lulus dengan initial JavaScript 166,6 KiB gzip dan audit runtime tanpa vulnerability yang diketahui.
+- `M1-07` masuk `VERIFY` pada 2026-09-21; fixture sample wedding deterministik dan quality gate lokal telah lulus.
 
 ## Task berikutnya yang direkomendasikan
 
-- Mulai `M1-07` dengan mendefinisikan sample wedding deterministik yang dapat di-seed ulang secara lokal.
+- Selesaikan verifikasi lokal M1-07, lalu jalankan GitHub Actions sebelum mengaktifkan M1-08.

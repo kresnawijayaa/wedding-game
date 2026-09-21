@@ -101,6 +101,10 @@ Reproduce the application checks locally with `pnpm verify` and `pnpm test:e2e`.
 
 On Windows, Playwright opens Chromium visibly to avoid an upstream headless-profile cleanup defect. Linux CI remains headless.
 
+## Local sample wedding
+
+The reusable local fixture in `packages/config/src/wedding-seed.ts` defines one draft wedding, couple, ceremony, reception, guest, and versioned theme assignment. Run `pnpm seed:validate` to validate it. M2 database migrations will consume this fixture; it intentionally contains no raw guest token or game-world coordinates.
+
 ## Observability
 
 Sentry error monitoring is configured for the browser, Next.js server/edge runtimes, and the BullMQ worker. It remains disabled when `NEXT_PUBLIC_SENTRY_DSN` is blank. Staging and production require:
@@ -115,4 +119,4 @@ Client monitoring loads the SDK only after an exception, keeping it outside the 
 
 ## Current task
 
-`M1-06` is complete after passing local verification and GitHub Actions. `M1-07` is next and will add one local sample wedding; wedding-domain production behavior remains out of scope.
+`M1-07` is in verification with one validated local sample wedding. Database persistence remains part of M2-01; wedding-domain production behavior remains out of scope.
