@@ -104,8 +104,8 @@ jobs:
         run: corepack enable && corepack prepare pnpm@12.4.1 --activate
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: Apply migrations and validate sample seed
-        run: pnpm db:migrate && pnpm seed:validate
+      - name: Apply migrations and verify idempotent sample seed
+        run: pnpm db:migrate && pnpm db:seed && pnpm db:seed && pnpm --filter @wedding-quest/database db:seed:verify
       - name: Probe infrastructure
         run: pnpm infra:probe
 

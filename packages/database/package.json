@@ -7,12 +7,17 @@
     "db:check": "drizzle-kit check",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
+    "db:seed": "node scripts/seed.mjs",
+    "db:seed:verify": "node scripts/verify-seed.mjs",
     "typecheck": "tsc --noEmit"
   },
   "exports": {
-    "./server": "./src/server.ts"
+    "./server": "./src/server.ts",
+    "./server/schema": "./src/schema/index.ts",
+    "./server/seed": "./src/seed.ts"
   },
   "dependencies": {
+    "@wedding-quest/config": "workspace:*",
     "drizzle-orm": "0.45.2",
     "postgres": "3.4.9"
   },

@@ -10,6 +10,7 @@
   "scripts": {
     "build": "pnpm --filter @wedding-quest/web build",
     "db:migrate": "pnpm --filter @wedding-quest/database db:migrate",
+    "db:seed": "pnpm --filter @wedding-quest/database db:seed",
     "dev": "pnpm --filter @wedding-quest/web dev",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -29,7 +30,7 @@
     "verify:client-boundaries": "node scripts/verify-client-boundaries.mjs",
     "verify:environment": "node --test packages/config/tests/environment.test.mjs",
     "verify:health": "node --test apps/web/tests/health.test.mjs",
-    "verify:infrastructure": "node --test packages/database/tests/database.test.mjs packages/infrastructure/tests/infrastructure.test.mjs",
+    "verify:infrastructure": "node --test packages/database/tests/database.test.mjs packages/database/tests/schema.test.mjs packages/infrastructure/tests/infrastructure.test.mjs",
     "verify:observability": "node --test packages/shared/tests/observability.test.mjs",
     "verify:seed": "node --test packages/config/tests/wedding-seed.test.mjs",
     "worker": "pnpm --filter @wedding-quest/worker start",

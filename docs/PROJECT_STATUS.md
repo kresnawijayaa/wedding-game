@@ -6,7 +6,7 @@ Status umum: sesuai rencana
 
 ## Tujuan saat ini
 
-Mengerjakan `M2-01`: migrasi wedding, couple, event, guest, dan theme assignment.
+Memverifikasi `M2-01`: schema, migrasi, dan seed idempotent untuk domain wedding inti.
 
 ## Status task
 
@@ -27,7 +27,7 @@ Mengerjakan `M2-01`: migrasi wedding, couple, event, guest, dan theme assignment
 | M1-06 | DONE | Technical owner | `docs/test-evidence/M1/M1-06-observability.md` dan GitHub Actions run `35077802462` | Selesai |
 | M1-07 | DONE | Technical owner | `docs/test-evidence/M1/M1-07-sample-wedding-seed.md` dan GitHub Actions run `35563147513` | Selesai |
 | M1-08 | DONE | Technical owner | `docs/test-evidence/M1/M1-08-health-readiness.md` dan GitHub Actions run `35564084065` | Selesai |
-| M2-01 | READY | Technical owner | Acceptance criteria di `docs/IMPLEMENTATION_PLAN.md` | Implementasikan migrasi domain inti |
+| M2-01 | VERIFY | Technical owner | Schema tests, Drizzle migration check, dan integration seed | Jalankan verifikasi lokal, lalu GitHub Actions |
 
 ## Pengujian
 
@@ -46,6 +46,7 @@ Mengerjakan `M2-01`: migrasi wedding, couple, event, guest, dan theme assignment
 | 2026-09-16 | M1-06 observability | Environment/release validation, privacy scrubber, web/server/edge/worker integration, production build, bundle budget, audit, workflow lint, dan browser smoke test | Lulus lokal dan GitHub-hosted | `docs/test-evidence/M1/M1-06-observability.md` dan GitHub Actions run `35077802462` |
 | 2026-09-21 | M1-07 sample wedding seed | Validasi schema, referential integrity, determinism, ketiadaan raw guest token, boundaries, lint, formatting, dan typecheck | Lulus lokal dan GitHub-hosted | `docs/test-evidence/M1/M1-07-sample-wedding-seed.md` dan GitHub Actions run `35563147513` |
 | 2026-09-21 | M1-08 health/readiness | Liveness, dependency readiness, safe failure response, timeout, boundaries, lint, typecheck, production build, migration/seed gate, dan client isolation | Lulus lokal dan GitHub-hosted | `docs/test-evidence/M1/M1-08-health-readiness.md` dan GitHub Actions run `35564084065` |
+| 2026-09-21 | M2-01 domain migrations | Schema tables/constraints/indexes, migration metadata, seed transaction, idempotent CI command, unit tests, typecheck, build, dan client isolation | Lulus lokal; integration CI menunggu commit/push | `docs/test-evidence/M2/M2-01-domain-migrations.md` |
 
 ## Risiko dan blocker aktif
 
@@ -71,4 +72,4 @@ Mengerjakan `M2-01`: migrasi wedding, couple, event, guest, dan theme assignment
 
 ## Task berikutnya yang direkomendasikan
 
-- Mulai `M2-01` dengan schema dan migrasi domain inti yang mengonsumsi fixture M1-07 secara idempotent.
+- Selesaikan verifikasi M2-01 dan buktikan migrasi serta seed idempotent di GitHub Actions.

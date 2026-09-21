@@ -65,7 +65,7 @@ Docker Compose provides pinned PostgreSQL and Redis services on loopback-only, c
 ```powershell
 pnpm infra:up
 pnpm db:migrate
-pnpm seed:validate
+pnpm db:seed
 pnpm infra:probe
 pnpm infra:status
 pnpm infra:down
@@ -73,7 +73,7 @@ pnpm infra:down
 
 PostgreSQL uses port `55432` and Redis uses `56379` by default. Override `POSTGRES_PORT` or `REDIS_PORT` before `infra:up` if needed, and keep the corresponding URLs synchronized.
 
-The Drizzle baseline is configured, but domain tables and migrations intentionally begin in M2. The BullMQ worker can be started separately with `pnpm worker` while Redis is running.
+The Drizzle schema contains the core wedding domain tables. `pnpm db:seed` safely upserts the local sample wedding and can be run repeatedly. The BullMQ worker can be started separately with `pnpm worker` while Redis is running.
 
 No local object-storage container is bundled. Configure a maintained S3-compatible development endpoint through `OBJECT_STORAGE_*`; production targets Cloudflare R2. Photobooth captures never use server storage.
 
@@ -105,7 +105,7 @@ On Windows, Playwright opens Chromium visibly to avoid an upstream headless-prof
 
 ## Local sample wedding
 
-The reusable local fixture in `packages/config/src/wedding-seed.ts` defines one draft wedding, couple, ceremony, reception, guest, and versioned theme assignment. Run `pnpm seed:validate` to validate it. M2 database migrations will consume this fixture; it intentionally contains no raw guest token or game-world coordinates.
+The reusable local fixture in `packages/config/src/wedding-seed.ts` defines one draft wedding, couple, ceremony, reception, guest, and versioned theme assignment. Run `pnpm seed:validate` to validate it without PostgreSQL or `pnpm db:seed` to persist it. It intentionally contains no raw guest token or game-world coordinates.
 
 ## Service health
 
