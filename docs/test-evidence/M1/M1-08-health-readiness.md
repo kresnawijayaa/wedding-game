@@ -2,7 +2,7 @@
 
 Date: 2026-09-21  
 Task: `M1-08`  
-Result: LOCAL PASS — REMOTE VERIFICATION PENDING
+Result: PASS
 
 ## Outcome and acceptance criteria
 
@@ -18,7 +18,7 @@ Result: LOCAL PASS — REMOTE VERIFICATION PENDING
 |---|---|
 | `pnpm verify:health` | PASS; 4/4 liveness, readiness, sanitization, and timeout tests |
 | `pnpm verify` | PASS; 28 unit tests, boundaries, lint, formatting, typechecks, production build, 166.6 KiB initial JavaScript, and client isolation |
-| GitHub Actions | PENDING; requires commit and push |
+| [GitHub Actions run 35564084065](https://github.com/kresnawijayaa/wedding-game/actions/runs/35564084065) | PASS; quality/unit, build, migration/seed integration, infrastructure probe, and browser smoke tests |
 
 ## Performance, accessibility, and security impact
 

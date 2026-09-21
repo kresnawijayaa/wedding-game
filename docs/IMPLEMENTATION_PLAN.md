@@ -402,7 +402,7 @@ Task states: `BACKLOG`, `READY`, `IN PROGRESS`, `BLOCKED`, `VERIFY`, `DONE`.
 - [DONE] `M1-05` Add CI for unit/integration tests, browser tests, type checking, linting, and production builds.
 - [DONE] `M1-06` Configure Sentry release/environment separation.
 - [DONE] `M1-07` Create validated local seed data for one sample wedding; database persistence begins after the M2-01 domain migrations.
-- [VERIFY] `M1-08` Add health and readiness endpoints.
+- [DONE] `M1-08` Add health and readiness endpoints.
 
 **Exit criteria:** A clean checkout can be installed, migrated, seeded, tested, and built through documented commands and CI.
 
@@ -410,14 +410,14 @@ Task states: `BACKLOG`, `READY`, `IN PROGRESS`, `BLOCKED`, `VERIFY`, `DONE`.
 
 **Goal:** Render a complete non-game invitation from stored data.
 
-- `M2-01` Implement wedding, couple, event, guest, and theme-assignment migrations.
-- `M2-02` Implement server authorization and data-access boundaries.
-- `M2-03` Implement personalized signed guest URL/token handling.
-- `M2-04` Create the validated server-to-client invitation DTO contract.
-- `M2-05` Build cover and avatar selection UI.
-- `M2-06` Build accessible navigation and empty modal shells.
-- `M2-07` Build loading, expired invitation, unpublished, and not-found states.
-- `M2-08` Add localization infrastructure and timezone-safe date formatting.
+- [READY] `M2-01` Implement wedding, couple, event, guest, and theme-assignment migrations.
+- [BACKLOG] `M2-02` Implement server authorization and data-access boundaries.
+- [BACKLOG] `M2-03` Implement personalized signed guest URL/token handling.
+- [BACKLOG] `M2-04` Create the validated server-to-client invitation DTO contract.
+- [BACKLOG] `M2-05` Build cover and avatar selection UI.
+- [BACKLOG] `M2-06` Build accessible navigation and empty modal shells.
+- [BACKLOG] `M2-07` Build loading, expired invitation, unpublished, and not-found states.
+- [BACKLOG] `M2-08` Add localization infrastructure and timezone-safe date formatting.
 
 **Exit criteria:** A guest can open a personalized invitation and access every section through ordinary web navigation without Phaser.
 
@@ -820,7 +820,7 @@ For a solo developer, assume approximately 1.5–2.5 times this duration dependi
 
 Milestone M0 was completed on 2026-09-16. Product scope, flows, wireframes, device support, privacy/moderation, TypeScript ADR-001, scored risks, and measurable performance budgets are approved.
 
-Milestone M1 is active. `M1-01` through `M1-07` are complete. `M1-08` is in `VERIFY` with dependency-free liveness and bounded PostgreSQL/Redis readiness checks.
+Milestone M1 was completed on 2026-09-21. A clean checkout can be installed, migrated, seed-validated, tested, and built through documented commands and CI. Milestone M2 is active, with `M2-01` as the only `READY` task.
 
 The first executable proof should then be M3's vertical slice using placeholder assets. Only after movement, camera, lifecycle, collision, and React–Phaser integration are stable should production artwork and full content be integrated.
 

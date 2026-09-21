@@ -6,7 +6,7 @@ Status umum: sesuai rencana
 
 ## Tujuan saat ini
 
-Memverifikasi `M1-08`: health dan readiness endpoints dengan respons aman dan bounded dependency checks.
+Mengerjakan `M2-01`: migrasi wedding, couple, event, guest, dan theme assignment.
 
 ## Status task
 
@@ -26,7 +26,8 @@ Memverifikasi `M1-08`: health dan readiness endpoints dengan respons aman dan bo
 | M1-05 | DONE | Technical owner | `docs/test-evidence/M1/M1-05-ci.md` dan GitHub Actions run `35068068329` | Selesai |
 | M1-06 | DONE | Technical owner | `docs/test-evidence/M1/M1-06-observability.md` dan GitHub Actions run `35077802462` | Selesai |
 | M1-07 | DONE | Technical owner | `docs/test-evidence/M1/M1-07-sample-wedding-seed.md` dan GitHub Actions run `35563147513` | Selesai |
-| M1-08 | VERIFY | Technical owner | Focused endpoint tests dan quality gate | Jalankan verifikasi lokal, lalu GitHub Actions |
+| M1-08 | DONE | Technical owner | `docs/test-evidence/M1/M1-08-health-readiness.md` dan GitHub Actions run `35564084065` | Selesai |
+| M2-01 | READY | Technical owner | Acceptance criteria di `docs/IMPLEMENTATION_PLAN.md` | Implementasikan migrasi domain inti |
 
 ## Pengujian
 
@@ -44,7 +45,7 @@ Memverifikasi `M1-08`: health dan readiness endpoints dengan respons aman dan bo
 | 2026-09-16 | M1-05 CI foundation | Workflow lint, quality/unit, production build, integration probe, dan Playwright Chromium desktop/mobile | Lulus lokal dan GitHub-hosted | `docs/test-evidence/M1/M1-05-ci.md` dan GitHub Actions run `35068068329` |
 | 2026-09-16 | M1-06 observability | Environment/release validation, privacy scrubber, web/server/edge/worker integration, production build, bundle budget, audit, workflow lint, dan browser smoke test | Lulus lokal dan GitHub-hosted | `docs/test-evidence/M1/M1-06-observability.md` dan GitHub Actions run `35077802462` |
 | 2026-09-21 | M1-07 sample wedding seed | Validasi schema, referential integrity, determinism, ketiadaan raw guest token, boundaries, lint, formatting, dan typecheck | Lulus lokal dan GitHub-hosted | `docs/test-evidence/M1/M1-07-sample-wedding-seed.md` dan GitHub Actions run `35563147513` |
-| 2026-09-21 | M1-08 health/readiness | Liveness, dependency readiness, safe failure response, timeout, boundaries, lint, typecheck, production build, dan client isolation | Lulus lokal; GitHub-hosted menunggu commit/push | `docs/test-evidence/M1/M1-08-health-readiness.md` |
+| 2026-09-21 | M1-08 health/readiness | Liveness, dependency readiness, safe failure response, timeout, boundaries, lint, typecheck, production build, migration/seed gate, dan client isolation | Lulus lokal dan GitHub-hosted | `docs/test-evidence/M1/M1-08-health-readiness.md` dan GitHub Actions run `35564084065` |
 
 ## Risiko dan blocker aktif
 
@@ -66,7 +67,8 @@ Memverifikasi `M1-08`: health dan readiness endpoints dengan respons aman dan bo
 - `M1-05` selesai 2026-09-16; GitHub Actions run `35068068329` meluluskan quality/unit, production build, infrastructure integration, dan browser smoke tests.
 - `M1-06` selesai 2026-09-16; seluruh gate lokal dan GitHub Actions run `35077802462` lulus dengan initial JavaScript 166,6 KiB gzip dan audit runtime tanpa vulnerability yang diketahui.
 - `M1-07` selesai 2026-09-21; fixture sample wedding deterministik lulus quality gate lokal dan GitHub Actions run `35563147513`.
+- `M1-08` dan milestone M1 selesai 2026-09-21; GitHub Actions run `35564084065` meluluskan seluruh exit gate M1.
 
 ## Task berikutnya yang direkomendasikan
 
-- Selesaikan verifikasi lokal M1-08, lalu jalankan GitHub Actions sebelum menutup M1.
+- Mulai `M2-01` dengan schema dan migrasi domain inti yang mengonsumsi fixture M1-07 secara idempotent.
