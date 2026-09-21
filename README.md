@@ -119,4 +119,4 @@ Client monitoring loads the SDK only after an exception, keeping it outside the 
 
 ## Current task
 
-`M1-07` is in verification with one validated local sample wedding. Database persistence remains part of M2-01; wedding-domain production behavior remains out of scope.
+`M1-07` is complete with one validated local sample wedding. `M1-08` is next and will add health and readiness endpoints; database persistence remains part of M2-01.

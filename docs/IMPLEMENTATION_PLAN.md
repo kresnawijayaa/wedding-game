@@ -401,8 +401,8 @@ Task states: `BACKLOG`, `READY`, `IN PROGRESS`, `BLOCKED`, `VERIFY`, `DONE`.
 - [DONE] `M1-04` Configure PostgreSQL/Drizzle, Redis, BullMQ worker, and object-storage adapters.
 - [DONE] `M1-05` Add CI for unit/integration tests, browser tests, type checking, linting, and production builds.
 - [DONE] `M1-06` Configure Sentry release/environment separation.
-- [VERIFY] `M1-07` Create validated local seed data for one sample wedding; database persistence begins after the M2-01 domain migrations.
-- [BACKLOG] `M1-08` Add health and readiness endpoints.
+- [DONE] `M1-07` Create validated local seed data for one sample wedding; database persistence begins after the M2-01 domain migrations.
+- [READY] `M1-08` Add health and readiness endpoints.
 
 **Exit criteria:** A clean checkout can be installed, migrated, seeded, tested, and built through documented commands and CI.
 
@@ -820,7 +820,7 @@ For a solo developer, assume approximately 1.5–2.5 times this duration dependi
 
 Milestone M0 was completed on 2026-09-16. Product scope, flows, wireframes, device support, privacy/moderation, TypeScript ADR-001, scored risks, and measurable performance budgets are approved.
 
-Milestone M1 is active. `M1-01` through `M1-06` were completed on 2026-09-16. The repository now has a reproducible web/package skeleton, validated environment and server-infrastructure boundaries, a green GitHub Actions pipeline, and privacy-safe Sentry configuration for browser, Next.js server/edge, and worker runtimes. `M1-07` is in `VERIFY` with a validated, deterministic sample wedding fixture ready for the M2-01 domain migrations; `M1-08` remains `BACKLOG`.
+Milestone M1 is active. `M1-01` through `M1-07` are complete. The repository now has a reproducible web/package skeleton, validated environment and server-infrastructure boundaries, a green GitHub Actions pipeline, privacy-safe observability, and a deterministic sample wedding fixture ready for M2-01. `M1-08` is the only `READY` task.
 
 The first executable proof should then be M3's vertical slice using placeholder assets. Only after movement, camera, lifecycle, collision, and React–Phaser integration are stable should production artwork and full content be integrated.
 
