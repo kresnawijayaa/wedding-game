@@ -15,3 +15,11 @@ test("foundation invitation remains accessible before the game loads", async ({ 
   );
   await expect(page.locator("canvas")).toHaveCount(0);
 });
+
+test("liveness endpoint remains available without infrastructure", async ({ request }) => {
+  const response = await request.get("/api/health");
+
+  expect(response.status()).toBe(200);
+  expect(response.headers()["cache-control"]).toBe("no-store");
+  expect(await response.json()).toEqual({ status: "ok" });
+});

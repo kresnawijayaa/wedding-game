@@ -78,9 +78,9 @@ if (dependencyNames(manifests.web).has("@wedding-quest/game")) {
 }
 
 for (const serverPackage of ["@wedding-quest/database", "@wedding-quest/infrastructure"]) {
-  if (dependencyNames(manifests.web).has(serverPackage)) {
+  if (!dependencyNames(manifests.web).has(serverPackage)) {
     failures.push(
-      `@wedding-quest/web must not depend on ${serverPackage} before a server-only integration task.`,
+      `@wedding-quest/web must declare ${serverPackage} for server-only readiness checks.`,
     );
   }
 }

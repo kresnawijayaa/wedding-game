@@ -211,6 +211,12 @@ importers:
       '@wedding-quest/config':
         specifier: workspace:*
         version: link:../../packages/config
+      '@wedding-quest/database':
+        specifier: workspace:*
+        version: link:../../packages/database
+      '@wedding-quest/infrastructure':
+        specifier: workspace:*
+        version: link:../../packages/infrastructure
       '@wedding-quest/shared':
         specifier: workspace:*
         version: link:../../packages/shared

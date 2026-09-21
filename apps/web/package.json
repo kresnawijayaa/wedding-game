@@ -2,6 +2,7 @@
   "name": "@wedding-quest/web",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "next build",
     "dev": "next dev",
@@ -11,6 +12,8 @@
   "dependencies": {
     "@sentry/nextjs": "10.74.0",
     "@wedding-quest/config": "workspace:*",
+    "@wedding-quest/database": "workspace:*",
+    "@wedding-quest/infrastructure": "workspace:*",
     "@wedding-quest/shared": "workspace:*",
     "next": "16.3.5",
     "react": "19.3.0",

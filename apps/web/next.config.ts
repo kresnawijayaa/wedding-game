@@ -5,7 +5,12 @@ const nextConfig: NextConfig = {
   agentRules: false,
   poweredByHeader: false,
   reactStrictMode: true,
-  transpilePackages: ["@wedding-quest/config", "@wedding-quest/shared"],
+  transpilePackages: [
+    "@wedding-quest/config",
+    "@wedding-quest/database",
+    "@wedding-quest/infrastructure",
+    "@wedding-quest/shared",
+  ],
 };
 
 const hasSentryBuildCredentials = Boolean(

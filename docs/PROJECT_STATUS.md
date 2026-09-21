@@ -6,7 +6,7 @@ Status umum: sesuai rencana
 
 ## Tujuan saat ini
 
-Mengerjakan `M1-08`: menambahkan health dan readiness endpoints.
+Memverifikasi `M1-08`: health dan readiness endpoints dengan respons aman dan bounded dependency checks.
 
 ## Status task
 
@@ -26,7 +26,7 @@ Mengerjakan `M1-08`: menambahkan health dan readiness endpoints.
 | M1-05 | DONE | Technical owner | `docs/test-evidence/M1/M1-05-ci.md` dan GitHub Actions run `35068068329` | Selesai |
 | M1-06 | DONE | Technical owner | `docs/test-evidence/M1/M1-06-observability.md` dan GitHub Actions run `35077802462` | Selesai |
 | M1-07 | DONE | Technical owner | `docs/test-evidence/M1/M1-07-sample-wedding-seed.md` dan GitHub Actions run `35563147513` | Selesai |
-| M1-08 | READY | Technical owner | Acceptance criteria di `docs/IMPLEMENTATION_PLAN.md` | Tambahkan health dan readiness endpoints |
+| M1-08 | VERIFY | Technical owner | Focused endpoint tests dan quality gate | Jalankan verifikasi lokal, lalu GitHub Actions |
 
 ## Pengujian
 
@@ -44,6 +44,7 @@ Mengerjakan `M1-08`: menambahkan health dan readiness endpoints.
 | 2026-09-16 | M1-05 CI foundation | Workflow lint, quality/unit, production build, integration probe, dan Playwright Chromium desktop/mobile | Lulus lokal dan GitHub-hosted | `docs/test-evidence/M1/M1-05-ci.md` dan GitHub Actions run `35068068329` |
 | 2026-09-16 | M1-06 observability | Environment/release validation, privacy scrubber, web/server/edge/worker integration, production build, bundle budget, audit, workflow lint, dan browser smoke test | Lulus lokal dan GitHub-hosted | `docs/test-evidence/M1/M1-06-observability.md` dan GitHub Actions run `35077802462` |
 | 2026-09-21 | M1-07 sample wedding seed | Validasi schema, referential integrity, determinism, ketiadaan raw guest token, boundaries, lint, formatting, dan typecheck | Lulus lokal dan GitHub-hosted | `docs/test-evidence/M1/M1-07-sample-wedding-seed.md` dan GitHub Actions run `35563147513` |
+| 2026-09-21 | M1-08 health/readiness | Liveness, dependency readiness, safe failure response, timeout, boundaries, lint, typecheck, production build, dan client isolation | Lulus lokal; GitHub-hosted menunggu commit/push | `docs/test-evidence/M1/M1-08-health-readiness.md` |
 
 ## Risiko dan blocker aktif
 
@@ -68,4 +69,4 @@ Mengerjakan `M1-08`: menambahkan health dan readiness endpoints.
 
 ## Task berikutnya yang direkomendasikan
 
-- Mulai `M1-08` dengan health endpoint untuk liveness dan readiness endpoint yang memeriksa dependency penting.
+- Selesaikan verifikasi lokal M1-08, lalu jalankan GitHub Actions sebelum menutup M1.

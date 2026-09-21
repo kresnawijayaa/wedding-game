@@ -64,6 +64,8 @@ Docker Compose provides pinned PostgreSQL and Redis services on loopback-only, c
 
 ```powershell
 pnpm infra:up
+pnpm db:migrate
+pnpm seed:validate
 pnpm infra:probe
 pnpm infra:status
 pnpm infra:down
@@ -105,6 +107,13 @@ On Windows, Playwright opens Chromium visibly to avoid an upstream headless-prof
 
 The reusable local fixture in `packages/config/src/wedding-seed.ts` defines one draft wedding, couple, ceremony, reception, guest, and versioned theme assignment. Run `pnpm seed:validate` to validate it. M2 database migrations will consume this fixture; it intentionally contains no raw guest token or game-world coordinates.
 
+## Service health
+
+- `GET /api/health` is a dependency-free liveness check.
+- `GET /api/readiness` checks PostgreSQL and Redis and returns `503` when either dependency is unavailable.
+
+Both responses disable caching. Readiness exposes only safe `ok`/`error` states and never returns connection details.
+
 ## Observability
 
 Sentry error monitoring is configured for the browser, Next.js server/edge runtimes, and the BullMQ worker. It remains disabled when `NEXT_PUBLIC_SENTRY_DSN` is blank. Staging and production require:
@@ -119,4 +128,4 @@ Client monitoring loads the SDK only after an exception, keeping it outside the 
 
 ## Current task
 
-`M1-07` is complete with one validated local sample wedding. `M1-08` is next and will add health and readiness endpoints; database persistence remains part of M2-01.
+`M1-08` is in verification with health and readiness endpoints; database persistence remains part of M2-01.
