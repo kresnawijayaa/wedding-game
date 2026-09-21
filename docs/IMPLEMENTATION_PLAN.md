@@ -410,8 +410,8 @@ Task states: `BACKLOG`, `READY`, `IN PROGRESS`, `BLOCKED`, `VERIFY`, `DONE`.
 
 **Goal:** Render a complete non-game invitation from stored data.
 
-- [VERIFY] `M2-01` Implement wedding, couple, event, guest, and theme-assignment migrations.
-- [BACKLOG] `M2-02` Implement server authorization and data-access boundaries.
+- [DONE] `M2-01` Implement wedding, couple, event, guest, and theme-assignment migrations.
+- [READY] `M2-02` Implement server authorization and data-access boundaries.
 - [BACKLOG] `M2-03` Implement personalized signed guest URL/token handling.
 - [BACKLOG] `M2-04` Create the validated server-to-client invitation DTO contract.
 - [BACKLOG] `M2-05` Build cover and avatar selection UI.
@@ -820,7 +820,7 @@ For a solo developer, assume approximately 1.5–2.5 times this duration dependi
 
 Milestone M0 was completed on 2026-09-16. Product scope, flows, wireframes, device support, privacy/moderation, TypeScript ADR-001, scored risks, and measurable performance budgets are approved.
 
-Milestone M1 was completed on 2026-09-21. Milestone M2 is active; `M2-01` is in `VERIFY` with core relational schema, generated migration, and idempotent sample persistence.
+Milestone M1 was completed on 2026-09-21. Milestone M2 is active; `M2-01` is complete with core relational schema, generated migration, and CI-verified idempotent sample persistence. `M2-02` is the only `READY` task.
 
 The first executable proof should then be M3's vertical slice using placeholder assets. Only after movement, camera, lifecycle, collision, and React–Phaser integration are stable should production artwork and full content be integrated.
 

@@ -128,4 +128,4 @@ Client monitoring loads the SDK only after an exception, keeping it outside the 
 
 ## Current task
 
-Milestone M1 is complete. `M2-01` is next and will add the core wedding-domain migrations and idempotent sample-data persistence.
+`M2-01` is complete with core wedding-domain migrations and idempotent sample persistence. `M2-02` is next and will add server authorization and data-access boundaries.

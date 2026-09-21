@@ -2,7 +2,7 @@
 
 Date: 2026-09-21  
 Task: `M2-01`  
-Result: LOCAL PASS — REMOTE INTEGRATION PENDING
+Result: PASS
 
 ## Outcome and acceptance criteria
 
@@ -18,7 +18,7 @@ Result: LOCAL PASS — REMOTE INTEGRATION PENDING
 |---|---|
 | `pnpm --filter @wedding-quest/database db:check` | PASS; migration metadata is consistent |
 | `pnpm verify` | PASS; 30 unit tests, boundaries, lint, formatting, typechecks, production build, bundle budget, and client isolation |
-| GitHub Actions integration | PENDING; will migrate, seed twice, verify persisted counts, and run the infrastructure probe |
+| [GitHub Actions run 35566259440](https://github.com/kresnawijayaa/wedding-game/actions/runs/35566259440) | PASS; migration, two seed runs, persisted-count verification, infrastructure probe, build, and browser tests |
 
 ## Performance, accessibility, and security impact
 
